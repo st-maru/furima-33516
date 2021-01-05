@@ -4,18 +4,17 @@
 
 ## users テーブル
 
-| Column          | Type    | Options                   |
-| --------------- | ------- | ------------------------- |
-| nickname        | string  | null: false, unique: true |
-| email           | string  | null: false               |
-| password        | string  | null: false               |
-| last_name       | string  | null: false               |
-| first_name      | string  | null: false               |
-| ruby_last_name  | string  | null: false               |
-| ruby_first_name | string  | null: false               |
-| birth_year_id   | integer | null: false               |
-| birth_month_id  | integer | null: false               |
-| birth_date_id   | integer | null: false               | 
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false               |
+| encrypted_password | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name         | string  | null: false               |
+| ruby_last_name     | string  | null: false               |
+| ruby_first_name    | string  | null: false               |
+| birth_day          | date    | null: false               |
+
 
 ### Association
 
@@ -26,16 +25,15 @@
 
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
-| image       | string     | null: false                    |
 | name        | string     | null: false                    |
-| text        | string     | null: false                    |
+| text        | text       | null: false                    |
 | category_id | integer    | null: false                    |
 | status_id   | integer    | null: false                    |
 | fee_id      | integer    | null: false                    |
 | location_id | integer    | null: false                    |
 | duration_id | integer    | null: false                    |
 | price       | integer    | null: false                    |
-| user_id     | references | null: false, foreign_key: true | 
+| user        | references | null: false, foreign_key: true | 
 
 ### Association
 
@@ -46,9 +44,8 @@
 
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
-| price       | integer    | null: false                    |
-| user_id     | references | null: false, foreign_key: true |
-| item_id     | references | null: false, foreign_key: true |
+| user        | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -64,9 +61,9 @@
 | prefecture_id  | integer    | null: false                    |
 | city           | string     | null: false                    |
 | house_number   | string     | null: false                    |
-| building_name  | string     | null: false                    |
+| building_name  | string     |                                |
 | phone_number   | string     | null: false                    |
-| order_id       | references | null: false, foreign_key: true |
+| order          | references | null: false, foreign_key: true |
 
 ### Association
 
