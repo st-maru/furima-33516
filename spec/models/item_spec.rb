@@ -74,6 +74,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Half-width number')
       end
+      it '価格が半角英語の場合保存できない' do
+        @item.price = 'aaaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price Half-width number')
+      end
     end
   end
 end
