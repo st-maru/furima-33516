@@ -127,7 +127,7 @@
     <ul class='item-lists'>
 
      <%# 商品がある場合表示し、商品がない場合はダミー商品を表示するための条件分岐 %>
-     <% unless @times = nil %>
+     <% if @items.present? %>
       <% @items.each do |item| %>
         <li class='list'>
           <%= link_to "#" do %>
