@@ -32,6 +32,11 @@ RSpec.describe UserOrder, type: :model do
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include('Prefecture Select')
       end
+      it '都道府県が空の場合保存できない' do
+        @user_order.prefecture_id = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Prefecture can't be blank")
+      end
       it '市区町村が空では保存できない' do
         @user_order.city = ''
         @user_order.valid?
@@ -56,6 +61,11 @@ RSpec.describe UserOrder, type: :model do
         @user_order.phone_number = '123456789012'
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
+      end
+      it '電話番号が英数混合の場合保存できない' do
+        @user_order.phone_number = '1234567aaaa'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include('Phone number Input only number')
       end
       it 'トークンが空では保存できない' do
         @user_order.token = nil
