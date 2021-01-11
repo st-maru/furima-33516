@@ -5,5 +5,4 @@ class BuyerAddress < ApplicationRecord
 
   # オーダーモデルとのアソシエーション
   belongs_to :order
-
 end
