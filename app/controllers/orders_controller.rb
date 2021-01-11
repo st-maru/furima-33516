@@ -8,8 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @user_order = UserOrder.new(order_params) 
-    binding.pry  
+    @user_order = UserOrder.new(order_params)  
     if @user_order.valid?
        pay_item
        @user_order.save
@@ -39,6 +38,8 @@ class OrdersController < ApplicationController
  end
 
  def move_to_index
-  redirect_to root_path if current_user.id == @item.user.id
-end
+   if current_user.id == @item.user.id || @item.order.present?
+    redirect_to root_path
+   end
+ end
 end
