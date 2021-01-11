@@ -10,6 +10,9 @@ class Item < ApplicationRecord
   # ユーザーモデルとのアソシエーション
   belongs_to :user
 
+  # オーダーモデルとのアソシエーション
+  has_one :order
+
   # ActiveStorageの設定
   has_one_attached :image
 
