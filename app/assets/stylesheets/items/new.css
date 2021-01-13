@@ -227,3 +227,21 @@
 .inc {
   font-size: 13px;
 }
+
+.image-preview {
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.image-size {
+  width: 50%;
+  height: 50%;
+}
+
+.preview {
+  display: flex;
+  justify-content: center;
+}
