@@ -1,0 +1,94 @@
+<%= render "shared/header" %>
+<div class='main'>
+  <%# 商品一覧 %>
+  <div class='item-contents'>
+  「<%= @result %>」の検索結果
+    <ul class='item-lists'>
+     <%# 商品がある場合表示し、商品がない場合はダミー商品を表示するための条件分岐 %>
+     <% if @items.present? %>
+      <% @items.each do |item| %>
+        <li class='list'>
+          <%= link_to item_path(item.id) do %>
+          <div class='item-img-content'>
+            <%= image_tag item.image, class: "item-img" %>
+            <% if item.order.present? %>
+             <div class='sold-out'>
+             <span>Sold Out!!</span>
+            </div>
+            <% end %>
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= item.name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= item.price %>円<br><%= item.fee.name %></span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+      <% end %>
+     <% else %>
+        <li class='list'>
+          <%= link_to '#' do %>
+          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              商品を出品してね！
+            </h3>
+            <div class='item-price'>
+              <span>99999999円<br>(税込み)</span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </li>
+     <% end %>
+    </ul>
+  </div>
+</div>
+<%# 商品一覧 %>
+
+<%= link_to( new_item_path, class: 'purchase-btn') do %>
+  <span class='purchase-btn-text'>出品する</span>
+  <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+<% end %>
+
+<%# スマホ版アプリ広告なしのフッター %>
+<div class='footer'>
+  <div class='footer-contents'>
+    <div class='furima-details'>
+      <h2 class='footer-content-head'>FURIMAについて</h2>
+      <ul>
+        <li><%= link_to '会社概要（運営会社)', "#", class: "footer-link" %></li>
+        <li><%= link_to 'プライバシーポリシー', "#", class: "footer-link" %></li>
+        <li><%= link_to 'FURIMA利用規約', "#", class: "footer-link" %></li>
+        <li><%= link_to 'ポイントに関する特約', "#", class: "footer-link" %></li>
+      </ul>
+    </div>
+    <div class='furima-details'>
+      <h2 class='footer-content-head'>FURIMAを見る</h2>
+      <ul>
+        <li><%= link_to 'カテゴリー一覧', "#", class: "footer-link" %></li>
+        <li><%= link_to 'ブランド一覧', "#", class: "footer-link" %></li>
+      </ul>
+    </div>
+    <div class='furima-details'>
+      <h2 class='footer-content-head'>FURIMAについて</h2>
+      <ul>
+        <li><%= link_to 'FURIMAガイド', "#", class: "footer-link" %></li>
+        <li><%= link_to 'FURIMAロゴ利用ガイドライン', "#", class: "footer-link" %></li>
+        <li><%= link_to 'お知らせ', "#", class: "footer-link" %></li>
+      </ul>
+    </div>
+  </div>
+  <%= link_to image_tag("furima-logo-white.png", class:"logo-white"), "#" %>
+  <p>© FURIMA</p>
+</div>
