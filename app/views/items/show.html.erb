@@ -101,7 +101,7 @@
     </a>
   </div>
 
-  <a href=  <% @item.user.id %># class="another-item"><%= @item.category.name %>をもっと見る</a> 
+  <div><%= link_to @item.category.name + "をもっと見る", category_items_path(category_id: @item.category_id), class:"another-item" %></div>
 
 </div>
 

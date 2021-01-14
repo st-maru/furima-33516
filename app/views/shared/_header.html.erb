@@ -15,7 +15,15 @@
   </div>
   <div class='nav'>
     <ul class='lists-left'>
-      <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
+     <div id="category-pull-down">
+      <ul><%= link_to 'カテゴリー', "#", class: "category-list", id: "category"%>
+      <div class="show-lists hidden" id="pull-down">
+       <% @categories.each do |category| %>
+       <li class="pull-down-list"><%= link_to category.name, category_items_path(category_id: category.id), id:"category-link" %></li>
+       <% end %>
+      </div>
+      </ul>
+     </div>
       <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
     </ul>
     <ul class='lists-right'>
@@ -28,4 +36,6 @@
       <% end %>
     </ul>
   </div>
+
+
 </header>

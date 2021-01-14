@@ -7,5 +7,8 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    collection do
+      get 'category'
+    end
   end
 end

@@ -1,10 +1,12 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
-  before_action :set_item, except: [:index, :new, :create, :search]
+  before_action :set_item, except: [:index, :new, :create, :search, :category]
   before_action :move_to_index, only: [:edit, :update, :destory]
+  before_action :category_set, only: [:index, :show, :search, :category]
 
   def index
     @items = Item.includes(:user, :order).order('created_at DESC')
+    @categories = Category.where(id: 2..11)
   end
 
   def new
@@ -44,6 +46,12 @@ class ItemsController < ApplicationController
     @result = params[:keyword]
   end
 
+  def category
+    @items = Item.where(category_id: params[:category_id])
+    @category = Category.find(params[:category_id])
+  end
+
+
   private
 
   def item_params
@@ -57,5 +65,9 @@ class ItemsController < ApplicationController
 
   def move_to_index
     redirect_to action: :index if current_user.id != @item.user.id || @item.order.present?
+  end
+
+  def category_set
+    @categories = Category.where(id: 2..11)
   end
 end
